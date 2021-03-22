@@ -1,0 +1,60 @@
+.welcome {
+    text-align: center;
+}
+
+nav {
+    display: flex;
+}
+
+.menu {
+    width: 100%;
+    text-align: right;
+    padding-top: 40px;
+}
+
+.menu #score{
+    font-weight: bold;
+}
+
+.menu #timer{
+    padding-left: 85%;
+    padding-right: 5%
+}
+
+.menu #score:hover {
+    color: white;
+    background: #fc9548;
+}
+
+.container {
+    display: block;
+    margin: 80px auto;
+    text-align: left;
+    box-shadow: 0 4px 8px 0 #713102;
+    transition: 0.3s;
+    width: 40vw;
+    padding: 20px;
+    background-color: #fedec7;
+  }
+
+  .container p {
+      padding-left: 20px;
+  }
+
+  .container li{
+      padding-bottom: 10px;
+  }
+
+  #start {
+    margin-left: 3%;
+    margin-top: 2%;
+    padding: 20px 50px;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    nav {
+      flex-direction: column;
+    }
+  }
+

@@ -1,3 +1,4 @@
+<!-- HW 3: Code a Quiz -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css"/>
-    <title>Code A Quiz</title>
+    <title>Code a Quiz</title>
 </head>
 
 <body>
+    <nav class="menu">
+        <a id="score">High Scores</a>
+        <a id="timer">Timer:</a>
+    </nav>    
+
+    <h1 class="welcome">Welcome to Code a Quiz</h1>
+
+    <section class="container">
+        <p>Directions:</p>
+        <ul>
+            <li>Try to answer the following questions before the time runs out!</li>
+            <li>Incorrect answers will lose 10 seconds.</li>
+            <li>You have 60 seconds.</li>
+        </ul>
+        
+        <button id="start">Start</button>
+    </section>
+
     <script src="./assets/js/script.js"></script>
 </body>
 </html>

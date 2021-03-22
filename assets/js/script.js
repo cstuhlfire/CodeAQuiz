@@ -11,36 +11,30 @@ let questionBank = [
     answers: ["Elaine", "George", "Kramer", "Banyon"],
     correctAnswer: "Kramer",
   },
+  {
+    question: "Who is Jerry's nemisis?",
+    answers: ["Newman", "Mr. Pit", "Kramer", "Banyon"],
+    correctAnswer: "Kramer",
+  },
 ];
 
 // Variables
+let totalTime = 10;
+let secondsLeft = totalTime;
+
 let timerDisplay = document.querySelector("#timer");
 let startButton = document.querySelector("#start");
 let container = document.querySelector(".container");
-let totalTime = 10;
-let secondsLeft = totalTime;
-let startClicked = false;
 
 //*** Javascript and function calls
 
-resetVariables();
-setTime(secondsLeft);
 console.log(questionBank);
 
 //*** Function definitions
-function resetVariables() {
-  secondsLeft = totalTime;
-  startClicked = false;
-}
-
-function setTime() {
-  timerDisplay.textContent = "Timer: " + secondsLeft;
-  return;
-}
 
 // Set timer interval with set Interval
 function countDown() {
-  var timerInterval = setInterval(function () {
+  let timerInterval = setInterval(function () {
     if (secondsLeft > 0) {
       timerDisplay.textContent = "Timer: " + secondsLeft;
       secondsLeft--;
@@ -48,22 +42,38 @@ function countDown() {
       timerDisplay.textContent = "Timer: " + secondsLeft;
       // Stops execution of action at set interval
       clearInterval(timerInterval);
-      resetVariables();
+      secondsLeft = totalTime; // reset so it can run again
     }
   }, 1000);
-
-  return;
 }
+
+// The following function renders questions as <li> elements
+function renderList() {
+    countDown();
+    
+    // Clear todoList element and update todoCountSpan
+    // todoList.innerHTML = "";
+    // todoCountSpan.textContent = todos.length;
+  
+    // Render a new li for each answer
+    // for (var i = 0; i < todos.length; i++) {
+    //   var todo = todos[i];
+  
+    //   var li = document.createElement("li");
+    //   li.textContent = todo;
+    //   li.setAttribute("data-index", i);
+  
+    //   var button = document.createElement("button");
+    //   button.textContent = "Complete ✔️";
+  
+    //   li.appendChild(button);
+    //   todoList.appendChild(li);
+    //}
+  }
 
 //*** Event listeners
 // Listen for a click event on start button
-startButton.addEventListener("click", function () {
-  // Start countdown timer if not already started
-  if (!startClicked) {
-    countDown();
-    startClicked = true;
-  }
-});
+startButton.addEventListener("click", renderList);
 
 // Create title ***
 // Create "start" "cancel" buttons ***

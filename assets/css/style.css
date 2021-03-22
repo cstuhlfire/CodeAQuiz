@@ -2,13 +2,9 @@
     text-align: center;
 }
 
-nav {
-    display: flex;
-}
-
 .menu {
-    width: 100%;
-    text-align: right;
+    margin-left: 10%;
+    text-align: left;
     padding-top: 40px;
 }
 
@@ -17,8 +13,7 @@ nav {
 }
 
 .menu #timer{
-    padding-left: 85%;
-    padding-right: 5%
+    margin-left: 75%;
 }
 
 .menu #score:hover {
@@ -31,10 +26,9 @@ nav {
     margin: 80px auto;
     text-align: left;
     box-shadow: 0 4px 8px 0 #713102;
-    transition: 0.3s;
     width: 40vw;
     padding: 20px;
-    background-color: #fedec7;
+    background-color: #fae9dc;
   }
 
   .container p {
@@ -50,11 +44,5 @@ nav {
     margin-top: 2%;
     padding: 20px 50px;
     text-align: center;
-  }
-
-  @media screen and (max-width: 768px) {
-    nav {
-      flex-direction: column;
-    }
   }
 

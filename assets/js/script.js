@@ -7,20 +7,37 @@
 // Create question objects
 let questionBank = [
   {
-    question: "Who is Jerry's Neighbor?",
+    question: "Who is Jerry's neighbor across the hall?",
     answers: ["Elaine", "George", "Kramer", "Banyon"],
-    correctAnswer: "Kramer",
+    correctAnswer: 3
   },
   {
     question: "Who is Jerry's nemisis?",
     answers: ["Newman", "Mr. Pit", "Kramer", "Banyon"],
-    correctAnswer: "Kramer",
+    correctAnswer: 1
   },
+  {
+    question: "What is Elaine's favorite order from The Resaurant?",
+    answers: ["Grilled Cheese", "Tuna on Rye", "Cereal", "Big Salad"],
+    correctAnswer: 4
+  },
+  {
+    question: "What winter holiday does Frank Costanza celebrate?",
+    answers: ["Christmas", "Festivus", "Dark Solstice", "Hanukkah"],
+    correctAnswer: 2
+  },
+  {
+    question: "What is Kramer's first name?",
+    answers: ["Frank", "Kranston", "Cosmo", "Charlie"],
+    correctAnswer: 3
+  }
 ];
 
 // Variables
-let totalTime = 10;
+let totalQuestions = questionBank.length;
+let totalTime = 25;
 let secondsLeft = totalTime;
+let timerInterval = 0;
 
 let timerDisplay = document.querySelector("#timer");
 let startButton = document.querySelector("#start");
@@ -28,28 +45,39 @@ let container = document.querySelector(".container");
 
 //*** Javascript and function calls
 
-console.log(questionBank);
-
 //*** Function definitions
+
+// Reset values to welcome screen defaults
+function resetValues() {
+    secondsLeft = totalTime;
+    startButton.setAttribute("style", "visibility:visible")
+    container.setAttribute("style", "visiblity:visible");
+}
 
 // Set timer interval with set Interval
 function countDown() {
-  let timerInterval = setInterval(function () {
-    if (secondsLeft > 0) {
-      timerDisplay.textContent = "Timer: " + secondsLeft;
-      secondsLeft--;
-    } else {
-      timerDisplay.textContent = "Timer: " + secondsLeft;
+  timerInterval = setInterval(function () {
+    secondsLeft--;
+   
+    timerDisplay.textContent = "Timer: " + secondsLeft;
+    if (secondsLeft === 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
-      secondsLeft = totalTime; // reset so it can run again
+      resetValues(); 
     }
   }, 1000);
 }
 
 // The following function renders questions as <li> elements
-function renderList() {
+function renderQuestions() {
+    clearInterval(timerInterval);
+    // startButton.setAttribute("style", "visibility:hidden");
+    // container.setAttribute("style", "visibility:hidden");
     countDown();
+    console.log(questionBank.length);
+    console.log(questionBank);
+
+    // secondsLeft = secondsLeft - 10;
     
     // Clear todoList element and update todoCountSpan
     // todoList.innerHTML = "";
@@ -73,7 +101,7 @@ function renderList() {
 
 //*** Event listeners
 // Listen for a click event on start button
-startButton.addEventListener("click", renderList);
+startButton.addEventListener("click", renderQuestions);
 
 // Create title ***
 // Create "start" "cancel" buttons ***
@@ -83,7 +111,7 @@ startButton.addEventListener("click", renderList);
 // On click of start button, start countdown ***
 // Display countdown ***
 
-// Create question bank object
+// Create question bank object ***
 // Create question array
 // Read question array for 5 questions
 // For each question display question and create a li to display answer choices

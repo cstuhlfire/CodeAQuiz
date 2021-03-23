@@ -115,18 +115,17 @@ function answerQuestion(event) {
         secondsLeft = secondsLeft - 10;
       } else {
         secondsLeft = 0;
-        clearInterval(timerInterval);
+        setScoreBoard();
+        return;
       }
     }
 
-    // If there are more questions, set next question
+    // If there are more questions set next question
     currentQuestion++;
     if (currentQuestion < totalQuestions) {
       setQuestion();
     } else {
-      // Stop time and call score board
-      displayTimer();
-      clearInterval(timerInterval);
+      // Set score board
       setScoreBoard();
     }
   }
@@ -134,8 +133,10 @@ function answerQuestion(event) {
 }
 
 function setScoreBoard() {
+  displayTimer();
   clearInterval(timerInterval);
-  containerHeader.textContent = "High Scores";
+
+  containerHeader.textContent = "Score Board";
 
   correctTag.textContent = "Your Score is " + secondsLeft + ". You correctly answered " + correctCount + " questions.";
   startButton.setAttribute("style", "visibility:hidden");
@@ -162,7 +163,7 @@ function countDown() {
 
     if (secondsLeft === 0) {
       // Stops execution of action at set interval
-      clearInterval(timerInterval);
+      setScoreBoard();
     }
   }, 1000);
 
@@ -205,7 +206,7 @@ scoreMenu.addEventListener("click", setScoreBoard);
 // Display current score to user***
 // After 5 questions have been answered (at end of question loop), prompt for initials ***
 
-// Handle out of time
+// Handle out of time ***
 // Create scoreboard listener 
 // Store name and high score in localStorage
 // Loop through high scored in localStorage and display in list

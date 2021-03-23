@@ -26,6 +26,10 @@
     color: black;
 }
 
+.list {
+    list-style-type: none;
+}
+
 .hoverList1:hover {
   color: white;
   background-color: #fc9548;
@@ -47,22 +51,23 @@
   background-color: #fae9dc;
 }
 
-.containers p {
-  padding-left: 20px;
+.containers h3 {
+  margin-left: 4%;
 }
 
 .containers li {
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 #start {
   visibility: visible;
-  margin-left: 3%;
-  margin-top: 2%;
+  margin-left: 4%;
+  /* margin-top: 2%; */
   padding: 20px 50px;
   text-align: center;
 }
 
 .scoreForm {
+    margin-left: 4%;
     visibility: hidden;
 }

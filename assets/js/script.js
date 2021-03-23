@@ -1,8 +1,4 @@
-//**************** */
-// CodeAQuiz
-//**************** */
-
-//*** Global declarations
+// CodeAQuiz - Seinfeld Trivia Quiz
 
 // Create question bank with an array of objects
 let questionBank = [
@@ -41,8 +37,17 @@ let welcomeArray = [
   "Try to answer all the questions before time runs out!",
 ];
 
+// Create high score object
+let highScoreObject = {
+  hsName: "",
+  hsScore: 0,
+}
+
+// let highScoreObjectArray = [highScoreObject];
+
 // Variables
 let directions = true;
+let scoreboardFromMenu = false;
 let totalQuestions = questionBank.length;
 let totalTime = 60;
 let secondsLeft = totalTime;
@@ -54,29 +59,39 @@ let correctCount = 0;
 let timerDisplay = document.querySelector("#timer");
 let startButton = document.querySelector("#start");
 let scoreMenu = document.querySelector("#score");
+let returnButton = document.querySelector("#returnBtn");
+let clearButton = document.querySelector("#clearBtn");
+let submitButton = document.querySelector("#submitBtn");
+let inputName = document.querySelector("#inputName");
+let labelID = document.querySelector("#labelID");
 let orderedList = document.querySelector(".ordered-list");
 let containerHeader = document.querySelector(".container-header");
 let sbForm = document.querySelector(".scoreForm");
 let correctTag = document.querySelector("h3");
 let listItems = document.querySelectorAll("li");
 
-//*** Javascript and function calls
-resetValues();
+// Function calls
 setWelcome();
 
-//*** Function definitions
+// Function definitions
 function resetValues() {
   secondsLeft = totalTime;
   timerDisplay.textContent = "Timer: " + secondsLeft;
   directions = true;
+  scoreboardFromMenu = false;
+  currentQuestion = 0;
+  correctCount = 0;
 
   startButton.setAttribute("style", "visibility:visible");
   sbForm.setAttribute("style", "visibility:hidden");
+  hideFormInputs();
+  correctTag.textContent = "";  
 
   return;
 }
 function setWelcome() {
-  directions = true;
+  resetValues();
+
   containerHeader.textContent = "Directions:";
 
   for (let i = 0; i < listItems.length; i++) {
@@ -101,6 +116,7 @@ function setQuestion() {
 function answerQuestion(event) {
   event.stopPropagation();
 
+  // Get clicked answer
   if (!directions && currentQuestion < totalQuestions) {
     let answer = event.target.textContent;
 
@@ -132,15 +148,33 @@ function answerQuestion(event) {
   return;
 }
 
+function setSBFromMenu() {
+  scoreboardFromMenu = true;
+  setScoreBoard();
+}
+
+function hideFormInputs() {
+  submitButton.setAttribute("style", "visibility: hidden");
+  inputName.setAttribute("style", "visibility: hidden");
+  labelID.setAttribute("style", "visibility: hidden");
+
+  return;
+}
+
+function showFormInputs() {
+  submitButton.setAttribute("style", "visibility: visible");
+    inputName.setAttribute("style", "visibility: visible");
+    labelID.setAttribute("style", "visibility: visible");
+
+  return;
+}
+
 function setScoreBoard() {
   displayTimer();
   clearInterval(timerInterval);
 
   containerHeader.textContent = "Score Board";
-
-  correctTag.textContent = "Your Score is " + secondsLeft + ". You correctly answered " + correctCount + " questions.";
-  startButton.setAttribute("style", "visibility:hidden");
-
+  // Clear questions and hover style from list items
   for (let i = 0; i < listItems.length; i++) {
     const element = listItems[i];
 
@@ -148,6 +182,23 @@ function setScoreBoard() {
     element.textContent = "";
   }
 
+  // Scores from localStorage
+  let scoreObject = JSON.parse(localStorage.getItem("highScore"));
+  if (scoreObject !== null) {
+    listItems[0].textContent = scoreObject.hsName + " ---------- Score: " + scoreObject.hsScore;
+  }
+
+  // If there is a score
+  if (!scoreboardFromMenu && secondsLeft < 60) {
+    correctTag.textContent = "Your Score is " + secondsLeft + ".  You correctly answered " + correctCount + " question(s).";
+
+    showFormInputs();
+  } else {
+    correctTag.textContent = "";
+    hideFormInputs();
+  }
+
+  startButton.setAttribute("style", "visibility:hidden");
   sbForm.setAttribute("style", "visibility:visible");
   return;
 }
@@ -170,7 +221,7 @@ function countDown() {
   return;
 }
 
-function renderQuestions() {
+function setQuestions() {
   directions = false;
 
   startButton.setAttribute("style", "visibility:hidden");
@@ -180,11 +231,36 @@ function renderQuestions() {
   return;
 }
 
-//*** Event listeners
-startButton.addEventListener("click", renderQuestions);
+function addScore() {
+  
+  highScoreObject.hsName = inputName.value;
+  highScoreObject.hsScore = secondsLeft;
+
+  listItems[0].textContent = highScoreObject.hsName + " ---------- Score: " + highScoreObject.hsScore;
+
+  localStorage.setItem("highScore", JSON.stringify(highScoreObject));
+
+  return;
+}
+
+function clearScores() {
+  for (let i = 0; i < listItems.length; i++) {
+    const element = listItems[i];
+    element.textContent = "";
+  }
+  inputName.value = "";
+  localStorage.clear();
+  return;
+}
+
+// Event listeners
+startButton.addEventListener("click", setQuestions);
 orderedList.addEventListener("click", answerQuestion);
-scoreMenu.addEventListener("click", setScoreBoard);
-// sbForm.addEventListener("")
+scoreMenu.addEventListener("click", setSBFromMenu);
+submitButton.addEventListener("click", addScore);
+clearButton.addEventListener("click", clearScores);
+returnButton.addEventListener("click", setWelcome);
+
 
 // Create title ***
 // Create "start" "cancel" buttons ***
@@ -205,17 +281,17 @@ scoreMenu.addEventListener("click", setScoreBoard);
 // If incorrect display "incorrect", deduct 10 seconds, show next question ***
 // Display current score to user***
 // After 5 questions have been answered (at end of question loop), prompt for initials ***
-
 // Handle out of time ***
-// Create scoreboard listener 
+
+// Create scoreboard button listeners ***
 // Store name and high score in localStorage
 // Loop through high scored in localStorage and display in list
 // Display high score object for all users' fastest times (use localStorage)
 // On high score screen create buttons to go back to start screen and to clear high score ***
-// Use form listener to act on button clicks
+
 // On submit - add name and score to list
 // On clear - clear score list and localStorage
-// On cancel - return to game start page
+// On cancel - return to game start page ***
 
 // Create more questions
 // Randomize 5 questions displayed

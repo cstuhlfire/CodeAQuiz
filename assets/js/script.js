@@ -13,7 +13,7 @@ let questionBank = [
   },
   {
     question: "Who is Jerry's nemesis?",
-    answers: ["Newman", "Mr. Pit", "Kramer", "Banyon"],
+    answers: ["Newman", "Mr. Pit", "Kramer", "J. Peterman"],
     correctAnswer: "Newman",
   },
   {
@@ -48,6 +48,7 @@ let totalTime = 60;
 let secondsLeft = totalTime;
 let currentQuestion = 0;
 let timerInterval = 0;
+let correctCount = 0;
 
 // Query selectors
 let timerDisplay = document.querySelector("#timer");
@@ -55,8 +56,8 @@ let startButton = document.querySelector("#start");
 let scoreMenu = document.querySelector("#score");
 let orderedList = document.querySelector(".ordered-list");
 let containerHeader = document.querySelector(".container-header");
+let sbForm = document.querySelector(".scoreForm");
 let correctTag = document.querySelector("h3");
-let sbForm = document.querySelector("form");
 let listItems = document.querySelectorAll("li");
 
 //*** Javascript and function calls
@@ -106,6 +107,7 @@ function answerQuestion(event) {
     // Check if correct
     if (answer === questionBank[currentQuestion].correctAnswer) {
       correctTag.textContent = "Correct!";
+      correctCount++;
     } else {
       correctTag.textContent = "Incorrect!";
 
@@ -133,7 +135,8 @@ function answerQuestion(event) {
 function setScoreBoard() {
   clearInterval(timerInterval);
   containerHeader.textContent = "High Scores";
-  correctTag.textContent = "";
+
+  correctTag.textContent = "Your Score is " + secondsLeft + ". You correctly answered " + correctCount + " questions.";
   startButton.setAttribute("style", "visibility:hidden");
 
   for (let i = 0; i < listItems.length; i++) {
@@ -163,7 +166,7 @@ function countDown() {
 
 function renderQuestions() {
   directions = false;
-  
+
   startButton.setAttribute("style", "visibility:hidden");
   countDown();
   setQuestion();
@@ -190,9 +193,21 @@ scoreMenu.addEventListener("click", setScoreBoard);
 // For each question display question and create a li to display answer choices ***
 // Check if correct ***
 // If correct display "correct" and show next question ***
-// Record time
-// Count correct answers by incrementing correct variable
-// If incorrect display "incorrect", deduct 10 seconds, show next question
-// After 5 questions have been answered (at end of question loop), prompt for initials
+// Record time ***
+// Count correct answers by incrementing correct variable ***
+// If incorrect display "incorrect", deduct 10 seconds, show next question ***
+// Display current score to user***
+// After 5 questions have been answered (at end of question loop), prompt for initials ***
+
+// Create scoreboard listener 
+// Store name and high score in localStorage
+// Loop through high scored in localStorage and display in list
 // Display high score object for all users' fastest times (use localStorage)
-// On high score screen create buttons to go back to start screen and to clear high score
+// On high score screen create buttons to go back to start screen and to clear high score ***
+// Use form listener to act on button clicks
+// On submit - add name and score to list
+// On clear - clear score list and localStorage
+// On cancel - return to game start page
+
+// Create more questions
+// Randomize 5 questions displayed

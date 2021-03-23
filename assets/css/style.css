@@ -63,6 +63,6 @@
   text-align: center;
 }
 
-form {
+.scoreForm {
     visibility: hidden;
 }

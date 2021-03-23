@@ -9,27 +9,27 @@ let questionBank = [
   {
     question: "Who is Jerry's neighbor across the hall?",
     answers: ["Elaine", "George", "Kramer", "Banyon"],
-    correctAnswer: 3,
+    correctAnswer: "Kramer",
   },
   {
-    question: "Who is Jerry's nemisis?",
+    question: "Who is Jerry's nemesis?",
     answers: ["Newman", "Mr. Pit", "Kramer", "Banyon"],
-    correctAnswer: 1,
+    correctAnswer: "Newman",
   },
   {
-    question: "What is Elaine's favorite order from The Resaurant?",
+    question: "What is Elaine's favorite order from Monk's Cafe?",
     answers: ["Grilled Cheese", "Tuna on Rye", "Cereal", "Big Salad"],
-    correctAnswer: 4,
+    correctAnswer: "Big Salad",
   },
   {
     question: "What winter holiday does Frank Costanza celebrate?",
     answers: ["Christmas", "Festivus", "Dark Solstice", "Hanukkah"],
-    correctAnswer: 2,
+    correctAnswer: "Festivus",
   },
   {
     question: "What is Kramer's first name?",
     answers: ["Frank", "Kranston", "Cosmo", "Charlie"],
-    correctAnswer: 3,
+    correctAnswer: "Cosmo",
   },
 ];
 
@@ -42,6 +42,7 @@ let welcomeArray = [
 ];
 
 // Variables
+let directions = true;
 let totalQuestions = questionBank.length;
 let totalTime = 5;
 let secondsLeft = totalTime;
@@ -51,9 +52,9 @@ let timerInterval = 0;
 // Query selectors
 let timerDisplay = document.querySelector("#timer");
 let startButton = document.querySelector("#start");
-// let containerMain = document.querySelector(".containers");
-let container1 = document.querySelector(".container1");
+let orderedList = document.querySelector(".ordered-list");
 let containerHeader = document.querySelector(".container-header");
+let correctTag = document.querySelector("h3");
 let listItems = document.querySelectorAll("li");
 
 //*** Javascript and function calls
@@ -64,11 +65,11 @@ setWelcome();
 function resetValues() {
   secondsLeft = totalTime;
   timerDisplay.textContent = "Timer: " + secondsLeft;
-  //containerMain.setAttribute("style", "visiblity:visible");
 
   return;
 }
 function setWelcome() {
+  directions = true;
   containerHeader.textContent = "Directions:";
 
   for (let i = 0; i < listItems.length; i++) {
@@ -83,16 +84,31 @@ function setQuestion() {
 
   for (let i = 0; i < listItems.length; i++) {
     const element = listItems[i];
+
+    element.classList.add("hoverList1");
     element.textContent = questionBank[currentQuestion].answers[i];
   }
   return;
 }
 
-function answerQuestion() {
-  currentQuestion++;
+function answerQuestion(event) {
+  event.stopPropagation();
 
-  if (currentQuestion < totalQuestions) {
-    setQuestion();    
+  if (!directions && currentQuestion < totalQuestions) {
+    let answer = event.target.textContent;
+
+    // Check if correct
+    if (answer === questionBank[currentQuestion].correctAnswer) {
+      correctTag.textContent = "Correct!";
+    } else {
+      correctTag.textContent = "Incorrect!";
+    }
+
+    // If there are more questions, set next question 
+    currentQuestion++;
+    if (currentQuestion < totalQuestions) {
+      setQuestion();      
+    }
   }
   return;
 }
@@ -112,6 +128,7 @@ function countDown() {
 }
 
 function renderQuestions() {
+  directions = false;
   clearInterval(timerInterval);
   startButton.setAttribute("style", "visibility:hidden");
   countDown();
@@ -122,7 +139,7 @@ function renderQuestions() {
 
 //*** Event listeners
 startButton.addEventListener("click", renderQuestions);
-container1.addEventListener("click", answerQuestion);
+orderedList.addEventListener("click", answerQuestion);
 
 // Create title ***
 // Create "start" "cancel" buttons ***

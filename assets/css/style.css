@@ -18,7 +18,23 @@
 
 .menu #score:hover {
   color: white;
-  background: #fc9548;
+  background-color: #fc9548;
+  cursor: pointer;
+}
+
+.list::marker {
+    color: black;
+}
+
+.hoverList1:hover {
+  color: white;
+  background-color: #fc9548;
+  cursor: pointer;
+}
+
+.hoverList2:hover {
+    background-color: #fae9dc;
+    cursor: pointer;
 }
 
 .containers {
@@ -37,10 +53,6 @@
 
 .containers li {
   padding-bottom: 10px;
-}
-
-.container1 {
-  visibility: visible;
 }
 
 #start {

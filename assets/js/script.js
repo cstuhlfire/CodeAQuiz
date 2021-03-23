@@ -188,7 +188,7 @@ function setScoreBoard() {
     listItems[0].textContent = scoreObject.hsName + " ---------- Score: " + scoreObject.hsScore;
   }
 
-  // If there is a score
+  // If there is a new score
   if (!scoreboardFromMenu && secondsLeft < 60) {
     correctTag.textContent = "Your Score is " + secondsLeft + ".  You correctly answered " + correctCount + " question(s).";
 
@@ -200,6 +200,7 @@ function setScoreBoard() {
 
   startButton.setAttribute("style", "visibility:hidden");
   sbForm.setAttribute("style", "visibility:visible");
+  inputName.value = "";
   return;
 }
 

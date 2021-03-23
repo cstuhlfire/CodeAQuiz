@@ -45,12 +45,13 @@ let welcomeArray = [
 let totalQuestions = questionBank.length;
 let totalTime = 5;
 let secondsLeft = totalTime;
+let currentQuestion = 0;
 let timerInterval = 0;
 
 // Query selectors
 let timerDisplay = document.querySelector("#timer");
 let startButton = document.querySelector("#start");
-let containerMain = document.querySelector(".containers");
+// let containerMain = document.querySelector(".containers");
 let container1 = document.querySelector(".container1");
 let containerHeader = document.querySelector(".container-header");
 let listItems = document.querySelectorAll("li");
@@ -60,6 +61,13 @@ resetValues();
 setWelcome();
 
 //*** Function definitions
+function resetValues() {
+  secondsLeft = totalTime;
+  timerDisplay.textContent = "Timer: " + secondsLeft;
+  //containerMain.setAttribute("style", "visiblity:visible");
+
+  return;
+}
 function setWelcome() {
   containerHeader.textContent = "Directions:";
 
@@ -67,12 +75,26 @@ function setWelcome() {
     const element = listItems[i];
     element.textContent = welcomeArray[i];
   }
+  return;
 }
 
-function resetValues() {
-  secondsLeft = totalTime;
-  timerDisplay.textContent = "Timer: " + secondsLeft;
-  //containerMain.setAttribute("style", "visiblity:visible");
+function setQuestion() {
+  containerHeader.textContent = questionBank[currentQuestion].question;
+
+  for (let i = 0; i < listItems.length; i++) {
+    const element = listItems[i];
+    element.textContent = questionBank[currentQuestion].answers[i];
+  }
+  return;
+}
+
+function answerQuestion() {
+  currentQuestion++;
+
+  if (currentQuestion < totalQuestions) {
+    setQuestion();    
+  }
+  return;
 }
 
 function countDown() {
@@ -85,39 +107,22 @@ function countDown() {
       clearInterval(timerInterval);
     }
   }, 1000);
+
+  return;
 }
 
 function renderQuestions() {
   clearInterval(timerInterval);
   startButton.setAttribute("style", "visibility:hidden");
   countDown();
-  //setQuestions();
-  
+  setQuestion();
 
-  // secondsLeft = secondsLeft - 10;
-
-  // Clear todoList element and update todoCountSpan
-  // todoList.innerHTML = "";
-  // todoCountSpan.textContent = todos.length;
-
-  // Render a new li for each answer
-  // for (var i = 0; i < todos.length; i++) {
-  //   var todo = todos[i];
-
-  //   var li = document.createElement("li");
-  //   li.textContent = todo;
-  //   li.setAttribute("data-index", i);
-
-  //   var button = document.createElement("button");
-  //   button.textContent = "Complete ✔️";
-
-  //   li.appendChild(button);
-  //   todoList.appendChild(li);
-  //}
+  return;
 }
 
 //*** Event listeners
 startButton.addEventListener("click", renderQuestions);
+container1.addEventListener("click", answerQuestion);
 
 // Create title ***
 // Create "start" "cancel" buttons ***
@@ -129,8 +134,8 @@ startButton.addEventListener("click", renderQuestions);
 
 // Create question bank object ***
 // Create question array ***
-// Read question array for 5 questions
-// For each question display question and create a li to display answer choices
+// Read question array for 5 questions ***
+// For each question display question and create a li to display answer choices ***
 // Check if correct
 // If correct display "correct" and show next question
 // Record time

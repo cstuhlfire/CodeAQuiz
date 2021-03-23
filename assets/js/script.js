@@ -52,9 +52,11 @@ let timerInterval = 0;
 // Query selectors
 let timerDisplay = document.querySelector("#timer");
 let startButton = document.querySelector("#start");
+let scoreMenu = document.querySelector("#score");
 let orderedList = document.querySelector(".ordered-list");
 let containerHeader = document.querySelector(".container-header");
 let correctTag = document.querySelector("h3");
+let sbForm = document.querySelector("form");
 let listItems = document.querySelectorAll("li");
 
 //*** Javascript and function calls
@@ -66,6 +68,9 @@ function resetValues() {
   secondsLeft = totalTime;
   timerDisplay.textContent = "Timer: " + secondsLeft;
   directions = true;
+
+  startButton.setAttribute("style", "visibility:visible");
+  sbForm.setAttribute("style", "visibility:hidden");
 
   return;
 }
@@ -101,25 +106,22 @@ function answerQuestion(event) {
     // Check if correct
     if (answer === questionBank[currentQuestion].correctAnswer) {
       correctTag.textContent = "Correct!";
-    } 
-    else {
+    } else {
       correctTag.textContent = "Incorrect!";
 
       if (secondsLeft > 10) {
-        secondsLeft = secondsLeft - 10;  
-      }
-      else {
+        secondsLeft = secondsLeft - 10;
+      } else {
         secondsLeft = 0;
         clearInterval(timerInterval);
       }
     }
 
-    // If there are more questions, set next question 
+    // If there are more questions, set next question
     currentQuestion++;
     if (currentQuestion < totalQuestions) {
-      setQuestion();      
-    }
-    else {
+      setQuestion();
+    } else {
       // Stop time and call score board
       clearInterval(timerInterval);
       setScoreBoard();
@@ -129,8 +131,10 @@ function answerQuestion(event) {
 }
 
 function setScoreBoard() {
+  clearInterval(timerInterval);
   containerHeader.textContent = "High Scores";
   correctTag.textContent = "";
+  startButton.setAttribute("style", "visibility:hidden");
 
   for (let i = 0; i < listItems.length; i++) {
     const element = listItems[i];
@@ -138,6 +142,8 @@ function setScoreBoard() {
     element.classList.remove("hoverList1");
     element.textContent = "";
   }
+
+  sbForm.setAttribute("style", "visibility:visible");
   return;
 }
 
@@ -157,7 +163,7 @@ function countDown() {
 
 function renderQuestions() {
   directions = false;
-  // clearInterval(timerInterval);
+  
   startButton.setAttribute("style", "visibility:hidden");
   countDown();
   setQuestion();
@@ -168,6 +174,7 @@ function renderQuestions() {
 //*** Event listeners
 startButton.addEventListener("click", renderQuestions);
 orderedList.addEventListener("click", answerQuestion);
+scoreMenu.addEventListener("click", setScoreBoard);
 
 // Create title ***
 // Create "start" "cancel" buttons ***

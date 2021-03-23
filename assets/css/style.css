@@ -1,49 +1,52 @@
 .welcome {
-    text-align: center;
+  text-align: center;
 }
 
 .menu {
-    margin-left: 10%;
-    text-align: left;
-    padding-top: 40px;
+  margin-left: 10%;
+  text-align: left;
+  padding-top: 40px;
 }
 
-.menu #score{
-    font-weight: bold;
+.menu #score {
+  font-weight: bold;
 }
 
-.menu #timer{
-    margin-left: 75%;
+.menu #timer {
+  margin-left: 75%;
 }
 
 .menu #score:hover {
-    color: white;
-    background: #fc9548;
+  color: white;
+  background: #fc9548;
 }
 
-.container {
-    display: block;
-    margin: 80px auto;
-    text-align: left;
-    box-shadow: 0 4px 8px 0 #713102;
-    width: 40vw;
-    padding: 20px;
-    background-color: #fae9dc;
-  }
+.containers {
+  display: block;
+  margin: 80px auto;
+  text-align: left;
+  box-shadow: 0 4px 8px 0 #713102;
+  width: 40vw;
+  padding: 20px;
+  background-color: #fae9dc;
+}
 
-  .container p {
-      padding-left: 20px;
-  }
+.containers p {
+  padding-left: 20px;
+}
 
-  .container li{
-      padding-bottom: 10px;
-  }
+.containers li {
+  padding-bottom: 10px;
+}
 
-  #start {
-    visibility: visible;
-    margin-left: 3%;
-    margin-top: 2%;
-    padding: 20px 50px;
-    text-align: center;
-  }
+.container1 {
+  visibility: visible;
+}
 
+#start {
+  visibility: visible;
+  margin-left: 3%;
+  margin-top: 2%;
+  padding: 20px 50px;
+  text-align: center;
+}

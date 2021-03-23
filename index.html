@@ -1,34 +1,36 @@
 <!-- HW 3: Code a Quiz -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Code a Quiz</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav class="menu">
-        <a id="score">High Scores</a>
-        <a id="timer">Timer: 0</a>
-    </nav>    
+      <a id="score">High Scores</a>
+      <a id="timer">Timer: 0</a>
+    </nav>
 
-    <h1 class="welcome">Welcome to Code a Quiz</h1>
+    <h1 class="welcome">Welcome to the Seinfeld Trivia Quiz</h1>
 
-    <section class="container">
-        <h2>Directions:</h2>
-        <ol> 
-            <li>Answer each question by clicking on an option.</li>
-            <li>You will start with 60 seconds.</li>
-            <li>Incorrect answers lose 10 seconds.</li>
-            <li>Try to answer all the questions before time runs out!</li>
+    <div class="containers">
+      <div class="container1">
+        <h2 class="container-header"></h2>
+        <ol class="ordered-list">
+          <li><a id="#firstItem">Answer each question by clicking on an option.</a></li>
+          <li><a id="#secondItem">You will start with 60 seconds.</a></li>
+          <li><a id="#thirdItem">Incorrect answers lose 10 seconds.</a></li>
+          <li><a id="#fourthItem">Try to answer all the questions before time runs out!</a></li>
         </ol>
-        
+
         <button id="start">Start</button>
-    </section>
+      </div>
+    </div>
 
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>

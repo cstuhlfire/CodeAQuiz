@@ -44,7 +44,7 @@ let welcomeArray = [
 // Variables
 let directions = true;
 let totalQuestions = questionBank.length;
-let totalTime = 5;
+let totalTime = 60;
 let secondsLeft = totalTime;
 let currentQuestion = 0;
 let timerInterval = 0;
@@ -65,6 +65,7 @@ setWelcome();
 function resetValues() {
   secondsLeft = totalTime;
   timerDisplay.textContent = "Timer: " + secondsLeft;
+  directions = true;
 
   return;
 }
@@ -100,8 +101,17 @@ function answerQuestion(event) {
     // Check if correct
     if (answer === questionBank[currentQuestion].correctAnswer) {
       correctTag.textContent = "Correct!";
-    } else {
+    } 
+    else {
       correctTag.textContent = "Incorrect!";
+
+      if (secondsLeft > 10) {
+        secondsLeft = secondsLeft - 10;  
+      }
+      else {
+        secondsLeft = 0;
+        clearInterval(timerInterval);
+      }
     }
 
     // If there are more questions, set next question 
@@ -109,6 +119,24 @@ function answerQuestion(event) {
     if (currentQuestion < totalQuestions) {
       setQuestion();      
     }
+    else {
+      // Stop time and call score board
+      clearInterval(timerInterval);
+      setScoreBoard();
+    }
+  }
+  return;
+}
+
+function setScoreBoard() {
+  containerHeader.textContent = "High Scores";
+  correctTag.textContent = "";
+
+  for (let i = 0; i < listItems.length; i++) {
+    const element = listItems[i];
+
+    element.classList.remove("hoverList1");
+    element.textContent = "";
   }
   return;
 }
@@ -129,7 +157,7 @@ function countDown() {
 
 function renderQuestions() {
   directions = false;
-  clearInterval(timerInterval);
+  // clearInterval(timerInterval);
   startButton.setAttribute("style", "visibility:hidden");
   countDown();
   setQuestion();
@@ -153,8 +181,8 @@ orderedList.addEventListener("click", answerQuestion);
 // Create question array ***
 // Read question array for 5 questions ***
 // For each question display question and create a li to display answer choices ***
-// Check if correct
-// If correct display "correct" and show next question
+// Check if correct ***
+// If correct display "correct" and show next question ***
 // Record time
 // Count correct answers by incrementing correct variable
 // If incorrect display "incorrect", deduct 10 seconds, show next question

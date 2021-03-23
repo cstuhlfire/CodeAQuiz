@@ -125,6 +125,7 @@ function answerQuestion(event) {
       setQuestion();
     } else {
       // Stop time and call score board
+      displayTimer();
       clearInterval(timerInterval);
       setScoreBoard();
     }
@@ -150,10 +151,14 @@ function setScoreBoard() {
   return;
 }
 
+function displayTimer() {
+  timerDisplay.textContent = "Timer: " + secondsLeft;
+}
+
 function countDown() {
   timerInterval = setInterval(function () {
     secondsLeft--;
-    timerDisplay.textContent = "Timer: " + secondsLeft;
+    displayTimer();
 
     if (secondsLeft === 0) {
       // Stops execution of action at set interval
@@ -178,6 +183,7 @@ function renderQuestions() {
 startButton.addEventListener("click", renderQuestions);
 orderedList.addEventListener("click", answerQuestion);
 scoreMenu.addEventListener("click", setScoreBoard);
+// sbForm.addEventListener("")
 
 // Create title ***
 // Create "start" "cancel" buttons ***
@@ -199,6 +205,7 @@ scoreMenu.addEventListener("click", setScoreBoard);
 // Display current score to user***
 // After 5 questions have been answered (at end of question loop), prompt for initials ***
 
+// Handle out of time
 // Create scoreboard listener 
 // Store name and high score in localStorage
 // Loop through high scored in localStorage and display in list

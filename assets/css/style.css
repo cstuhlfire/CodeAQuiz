@@ -51,23 +51,23 @@
   background-color: #fae9dc;
 }
 
-.containers h3 {
-  margin-left: 4%;
+.containers .info {
+  margin-left: 7%;
 }
 
 .containers li {
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 }
 
 #start {
   visibility: visible;
-  margin-left: 4%;
+  margin-left: 7%;
   /* margin-top: 2%; */
   padding: 20px 50px;
   text-align: center;
 }
 
 .scoreForm {
-    margin-left: 4%;
+    margin-left: 7%;
     visibility: hidden;
 }

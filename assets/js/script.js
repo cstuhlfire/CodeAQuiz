@@ -67,7 +67,7 @@ let labelID = document.querySelector("#labelID");
 let orderedList = document.querySelector(".ordered-list");
 let containerHeader = document.querySelector(".container-header");
 let sbForm = document.querySelector(".scoreForm");
-let correctTag = document.querySelector("h3");
+let correctTag = document.querySelector(".info");
 let listItems = document.querySelectorAll("li");
 
 // Function calls
@@ -190,7 +190,7 @@ function setScoreBoard() {
 
   // If there is a new score
   if (!scoreboardFromMenu && secondsLeft < 60) {
-    correctTag.textContent = "Your Score is " + secondsLeft + ".  You correctly answered " + correctCount + " question(s).";
+    correctTag.textContent = "Your Score is " + secondsLeft + ".  You correctly answered " + correctCount + " question(s). Record your name and click submit to save your score.";
 
     showFormInputs();
   } else {
@@ -262,37 +262,3 @@ submitButton.addEventListener("click", addScore);
 clearButton.addEventListener("click", clearScores);
 returnButton.addEventListener("click", setWelcome);
 
-
-// Create title ***
-// Create "start" "cancel" buttons ***
-// Create countdown timer ***
-// Create menu to show high score ***
-
-// On click of start button, start countdown ***
-// Display countdown ***
-
-// Create question bank object ***
-// Create question array ***
-// Read question array for 5 questions ***
-// For each question display question and create a li to display answer choices ***
-// Check if correct ***
-// If correct display "correct" and show next question ***
-// Record time ***
-// Count correct answers by incrementing correct variable ***
-// If incorrect display "incorrect", deduct 10 seconds, show next question ***
-// Display current score to user***
-// After 5 questions have been answered (at end of question loop), prompt for initials ***
-// Handle out of time ***
-
-// Create scoreboard button listeners ***
-// Store name and high score in localStorage
-// Loop through high scored in localStorage and display in list
-// Display high score object for all users' fastest times (use localStorage)
-// On high score screen create buttons to go back to start screen and to clear high score ***
-
-// On submit - add name and score to list
-// On clear - clear score list and localStorage
-// On cancel - return to game start page ***
-
-// Create more questions
-// Randomize 5 questions displayed

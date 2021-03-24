@@ -1,13 +1,20 @@
-# 04 Web APIs: Code Quiz
+# 04 Code Quiz
 
-## Your Task
+## Code a Quiz: Seinfeld Trivia Quiz
 
-At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 
+## Description
 
-To help familiarize you with these tests and allow you to use the skills covered in this unit, this week’s homework invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
+This is a trivia quiz. Users are given 60 seconds to answer 5 questions. Upon each clicked answer, users are presented with a new question. If the answer was incorrect 10 seconds are deducted from the time. The score is determined by the time left on the timer. At the end of the quiz, users have the choice to save their score.
 
-This week’s coursework will equip you with all the skills you need to succeed in this assignment.
+## Screen Image
+![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./assets/CodeAQuiz.png)
 
+## Links to Application and Github
+[Code a Quiz: Seinfeld Trivia Quiz](https://cstuhlfire.github.io/CodeAQuiz/)
+
+[Link to CodeAQuiz Github repository](https://github.com/cstuhlfire/CodeAQuiz)
+
+# Original Assignment
 ## User Story
 
 ```

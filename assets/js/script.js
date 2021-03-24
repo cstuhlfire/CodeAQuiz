@@ -102,6 +102,7 @@ function setWelcome() {
 }
 
 function setQuestion() {
+  
   containerHeader.textContent = questionBank[currentQuestion].question;
 
   for (let i = 0; i < listItems.length; i++) {
